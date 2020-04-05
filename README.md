@@ -37,4 +37,23 @@ In a Banhdanau Attention Mechanism, the input to the next decoder step is the co
 
 ## Usage:
 
-- Firstly, download the dataset you require from [here](http://www.manythings.org/anki/)
+- For Training, the language dataset is available [here](http://www.manythings.org/anki/). It consists of pairs from English to different languages. Once downloaded, you can use preprocess.py to process the dataset and prepare the tokenized dataset.
+```
+python preprocess.py --help
+usage: preprocess.py [-h] --input INPUT --name NAME [--reverse]
+                     [--num_examples NUM_EXAMPLES] [--min_len MIN_LEN]
+                     [--max_len MAX_LEN]
+
+Dataset Preprocessor
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --input INPUT         File contining training dataset eg. dataset/fra.txt
+  --name NAME           Name of the Dataset
+  --reverse             Translates to English
+  --num_examples NUM_EXAMPLES
+                        Number of Examples to take from training set
+  --min_len MIN_LEN     Minimum number of words in a scentence
+  --max_len MAX_LEN     Maximum number of words in a scentence
+```
+**Note: Translation is done usually from English. --reverse can be used to make the Translation to English.**
