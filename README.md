@@ -102,6 +102,34 @@ optional arguments:
 
 ## Examples:
 
+After Training for 1000 epochs the result is shown below,
+
+```
+==================================================
++++++++++++++++ TRANSLATION BOT +++++++++++++++
+==================================================
+
+Choose A Sampling Method
+Input 1 for => Greedy Sampling
+Input 2 for => Probability Proportional Sampling
+Input 3 for => Top-3 Sampling
+==================================================
+Input your preferred sampling choice: 2
+==================================================
+
+Input :> hello 
+Output :> salut gars
+Input :> how are you
+Output :> comment vastu
+Input :> go home
+Output :> rentrer chez soi
+Input :> i need some help please
+Output :> j'ai besoin d'aide s'il vous plait
+Input :> close it please
+Output :> veuillez le fermer
+```
+The Translations are almost perfect with some extra words occuring rarely (like in the first case).
+
 # G00D LUCK
 
 For doubts email me at:
