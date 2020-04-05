@@ -40,6 +40,7 @@ In a Banhdanau Attention Mechanism, the input to the next decoder step is the co
 - For Training, the language dataset is available [here](http://www.manythings.org/anki/). It consists of pairs from English to different languages. Once downloaded, you can use preprocess.py to process the dataset and prepare the tokenized dataset.
 ```
 python preprocess.py --help
+
 usage: preprocess.py [-h] --input INPUT --name NAME [--reverse]
                      [--num_examples NUM_EXAMPLES] [--min_len MIN_LEN]
                      [--max_len MAX_LEN]
@@ -57,3 +58,51 @@ optional arguments:
   --max_len MAX_LEN     Maximum number of words in a scentence
 ```
 **Note: Translation is done usually from English. --reverse can be used to make the Translation to English.**
+
+- Once the dataset is prepared, you can start the training using train.py
+```
+python train.py --help
+
+usage: train.py [-h] --name NAME [--epochs EPOCHS] [--resume]
+                [--min_len MIN_LEN] [--max_len MAX_LEN]
+
+Translation Bot Trainer
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --name NAME        Name of the Dataset
+  --epochs EPOCHS    Number of Training Epochs
+  --resume           Resume Training
+  --min_len MIN_LEN  Minimum number of words in a scentence
+  --max_len MAX_LEN  Maximum number of words in a scentence
+```
+**Note: Training by default starts from scratch. --resume can be used to continue Training from the last epoch loading the best weight**
+
+- After the training is completed, you can run test.py to start an interactive session with the Translation Bot
+```
+ML¬ python test.py --help
+
+usage: test.py [-h] --name NAME [--min_len MIN_LEN] [--max_len MAX_LEN]
+
+Interactive Translation Bot
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --name NAME        Name of the Dataset
+  --min_len MIN_LEN  Minimum number of words in a scentence
+  --max_len MAX_LEN  Maximum number of words in a scentence
+```
+**Note: The Translation Bot can operate in three modes:**
+
+**1.Greedy Sampling** 
+
+**2.Probability Proportional Sampling** 
+
+**3.Top-3 Sampling**
+
+## Examples:
+
+# G00D LUCK
+
+For doubts email me at:
+atinsaki@gmail.com
