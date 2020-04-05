@@ -39,7 +39,7 @@ def clean_text(text):
     return text
 
 
-def preprocess(dataset_file_path, len_bound, num_examples = None):
+def preprocess(dataset_file_path, len_bound, num_examples = None, reverse = False):
     """
     It reads the required files, creates input output pairs.
     """
@@ -68,8 +68,11 @@ def preprocess(dataset_file_path, len_bound, num_examples = None):
 
     assert len(input_lang) == len(output_lang) #  make both equal
     print("Read %s sentence pairs" % len(input_lang))
-        
-    return (output_lang, input_lang)
+
+    if reverse:
+        return (input_lang, output_lang)
+    else:
+        return (output_lang, input_lang)
 
 
 def tokenize(lang, oov=True):
@@ -86,9 +89,9 @@ def tokenize(lang, oov=True):
     return tensor, lang_tokenizer
 
 
-def load_dataset(dataset_file_path, len_bound, num_examples = None):
+def load_dataset(dataset_file_path, len_bound, num_examples = None, reverse=False):
     # creating cleaned input, output pairs
-    targ_lang, inp_lang = preprocess(dataset_file_path, len_bound, num_examples)
+    targ_lang, inp_lang = preprocess(dataset_file_path, len_bound, num_examples, reverse=reverse)
 
     input_tensor, inp_lang_tokenizer = tokenize(inp_lang, oov = True)   # in the input language, we allow OOV words
     target_tensor, targ_lang_tokenizer = tokenize(targ_lang, oov = False)   # in the output language, we do not allow OOV words
@@ -100,6 +103,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Dataset Preprocessor')
     parser.add_argument('--input',type=str,required=True,help='File contining training dataset')
     parser.add_argument('--name',type=str,required=True,help='Name of the Dataset')
+    parser.add_argument('--reverse', action="store_true", help='Translates to English')
     parser.add_argument('--num_examples',type=int,default=None,help='Number of Examples to take from training set')
     parser.add_argument('--min_len',type=int,default=1,help='Minimum number of words in a scentence')
     parser.add_argument('--max_len',type=int,default=15,help='Maximum number of words in a scentence')
@@ -108,7 +112,7 @@ if __name__ == "__main__":
     dataset_file_path = args.input # the path to the folder 
     len_bounds = [args.min_len, args.max_len]   # minimum and maximum permissible length of a sentence to be considered.
     
-    input_tensor, target_tensor, inp_lang, targ_lang = load_dataset(dataset_file_path, len_bounds, num_examples = args.num_examples)
+    input_tensor, target_tensor, inp_lang, targ_lang = load_dataset(dataset_file_path, len_bounds, num_examples = args.num_examples, reverse=args.reverse)
     
     inp_lang_json = inp_lang.to_json()
     targ_lang_json = targ_lang.to_json()
