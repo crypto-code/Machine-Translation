@@ -101,7 +101,7 @@ def load_dataset(dataset_file_path, len_bound, num_examples = None, reverse=Fals
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Dataset Preprocessor')
-    parser.add_argument('--input',type=str,required=True,help='File contining training dataset')
+    parser.add_argument('--input',type=str,required=True,help='File contining training dataset eg. dataset/fra.txt')
     parser.add_argument('--name',type=str,required=True,help='Name of the Dataset')
     parser.add_argument('--reverse', action="store_true", help='Translates to English')
     parser.add_argument('--num_examples',type=int,default=None,help='Number of Examples to take from training set')
