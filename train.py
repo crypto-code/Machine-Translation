@@ -10,7 +10,7 @@ from keras.preprocessing.text import tokenizer_from_json
 # This will force execute tensorflow in eager execution mode 
 tf.enable_eager_execution()
 
-parser = argparse.ArgumentParser(description='Translation Bot Trainer')
+parser = argparse.ArgumentParser(description='Dataset Preprocessor')
 parser.add_argument('--name',type=str,required=True,help='Name of the Dataset')
 parser.add_argument('--epochs',type=int,default=50,help='Number of Training Epochs')
 parser.add_argument('--resume', action="store_true", help='Resume Training')
@@ -34,6 +34,8 @@ with open('./processed_data_'+args.name+'/targ_lang.json', 'r') as f:
     f.close()
 
 print('Target Language Loaded...')    
+
+#4497894.62
 
 # load the dataset
 # The .npz file contains two arrays containing vectorized form of the input and output lines (arr_0: input & arr_1: output)
